@@ -1,0 +1,6 @@
+cleanrunshower
+cook
+run
+eat
+fly
+find food
