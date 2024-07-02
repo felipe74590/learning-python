@@ -1,21 +1,29 @@
 
 
+## Coding EX1
+# while True:
+#     enter_user = input("Would you like to enter a new member? ")
+#     enter_user.lower().strip()
 
-while True:
-    enter_user = input("Would you like to enter a new member? ")
-    enter_user.lower().strip()
+#     match enter_user:
+#         case "true"| "yes" | "y":
+#             member = input("Enter new member: ") + "\n"
+#             member.title()
+#             file = open("text_files/members.txt", "r")
+#             members = file.readlines()
 
-    match enter_user:
-        case "true"| "yes" | "y":
-            member = input("Enter new member: ") + "\n"
-            member.title()
-            file = open("text_files/members.txt", "r")
-            members = file.readlines()
+#             members.append(member)
 
-            members.append(member)
+#             file = open("text_files/members.txt", "w")
+#             file.writelines(members)
+#             file.close()
+#         case _:
+#             break
 
-            file = open("text_files/members.txt", "w")
-            file.writelines(members)
-            file.close()
-        case _:
-            break
+
+## transforming strings
+filenames = ["1.doc", "1.report","1.presentation"]
+filenames = [filename.replace('.','-') + '.txt' for filename in filenames]
+print(filenames)
+
+
