@@ -22,8 +22,18 @@
 
 
 ## transforming strings
-filenames = ["1.doc", "1.report","1.presentation"]
-filenames = [filename.replace('.','-') + '.txt' for filename in filenames]
-print(filenames)
+# filenames = ["1.doc", "1.report","1.presentation"]
+# filenames = [filename.replace('.','-') + '.txt' for filename in filenames]
+# print(filenames)
 
+## Coding EX2
+password = input("Enter new password: ")
+result = []
+
+if len(password) >= 8:
+    result.append(True)
+else:
+    result.append(False)
+
+print(result)
 

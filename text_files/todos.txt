@@ -1,2 +1,4 @@
-eat
-Run
+run
+cook
+clean
+buy tickets

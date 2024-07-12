@@ -3,62 +3,66 @@
 
 while True:
 
-    user_action = input("Type add, show, edit, complete, or exit: ")
+    user_action = input(
+        """ Type commands add 'insert todo here', show, edit 'insert item #', complete, or exit: """
+    )
     user_action = user_action.lower().strip()
 
-    match user_action:
-        case "add" :
-            todo = input("Enter a todo item: ") + "\n"
-            # assumes that the file already exits
-            with open('text_files/todos.txt', 'r') as file:
-                todos = file.readlines()
+    if "add" in user_action or 'new' in user_action:
+        todo = user_action[4:] + '\n'
 
-            todos.append(todo)
+        # assumes that the file already exits
+        with open('text_files/todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            with open('text_files/todos.txt', 'w') as file:
-                file.writelines(todos)
+        todos.append(todo)
 
-        case "show" | "display" : #use a bitwise or OR operator
-            with open('text_files/todos.txt', 'r') as file:
-                todos = file.readlines()
+        with open('text_files/todos.txt', 'w') as file:
+            file.writelines(todos)
 
-            for index, item in enumerate(todos):
-                item = item.strip('\n')
-                row = f"{index+1}: {item.title()}"
-                print(row)
+    elif "show" in user_action: #use a bitwise or OR operator
+        with open('text_files/todos.txt', 'r') as file:
+            todos = file.readlines()
 
-        case "edit" :
-            number = int(input("Number of the todo item to edit: "))
-            update = input("Enter change: ")
+        for index, item in enumerate(todos):
+            item = item.strip('\n')
+            row = f"{index+1}: {item.title()}"
+            print(row)
 
-            with open('text_files/todos.txt', 'r') as file:
-                todos = file.readlines()
+    elif "edit" in user_action:
+        number = int(user_action[5:])
+        print(number)
 
-            todos[number-1] = update + '\n'
+        with open('text_files/todos.txt', 'r') as file:
+            todos = file.readlines()
 
-            with open('text_files/todos.txt', 'w') as file:
-                file.writelines(todos)
+        update = input("Enter change: ")
+        todos[number-1] = update + '\n'
 
-        case "complete":
-            number = int(input("Number of the completed todo item: "))
+        with open('text_files/todos.txt', 'w') as file:
+            file.writelines(todos)
 
-            with open('text_files/todos.txt','r') as file:
-                todos = file.readlines()
+    elif "complete" in user_action:
+        number = int(user_action[9:])
+        # number = int(input("Number of the completed todo item: "))
 
-            completed_todo = todos[number-1].strip('\n').title()
-            todos.pop(number-1)
+        with open('text_files/todos.txt','r') as file:
+            todos = file.readlines()
 
-            with open('text_files/todos.txt','w') as file:
-                file.writelines(todos)
+        completed_todo = todos[number-1].strip('\n').title()
+        todos.pop(number-1)
 
-            message = f'Todo {completed_todo} was completed'
-            print(message)
+        with open('text_files/todos.txt','w') as file:
+            file.writelines(todos)
 
-        case "exit":
-            break
-        
-        case _:
-            print("Hey, the command you entered is not available!")
+        message = f'Todo {completed_todo} was completed'
+        print(message)
+
+    elif "exit" in user_action:
+        break
+    
+    else:
+        print("Hey, the command you entered is not available!")
 
 print("Get to it!")
     
