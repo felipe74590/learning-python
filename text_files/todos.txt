@@ -1,4 +1,3 @@
 run
 cook
 clean
-buy tickets

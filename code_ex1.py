@@ -27,13 +27,43 @@
 # print(filenames)
 
 ## Coding EX2
-password = input("Enter new password: ")
-result = []
+# password = input("Enter new password: ")
+# result = {}
 
-if len(password) >= 8:
-    result.append(True)
-else:
-    result.append(False)
+# if len(password) >= 8:
+#     result["length"] = True
+# else:
+#     result["length"] = False
 
-print(result)
+# digit = False
+# for i in password:
+#     if i.isdigit():
+#         digit = True
+# result["digits"] = digit
+
+# uppercase = False
+# for i in password:
+#     if i.isupper():
+#         uppercase = True
+# result["upper-case"] = uppercase
+
+# if all(result.values()):
+#     print("Strong Password")
+# else:
+#     print("Weak Password")
+
+# print(result)
+
+## Coding EX3
+
+try:
+    width = float(input("Enter rectangle width: "))
+    length = float(input("Enter rectangle length: "))
+
+    if width == length:
+        exit("That looks like a square")
+    area = width + length
+    print(area)
+except ValueError:
+    print("Please enter a number in digit form.")
 

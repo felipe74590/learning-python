@@ -1,14 +1,15 @@
 """ Create a ToDo App"""
 # todos = []
 
+
 while True:
 
     user_action = input(
-        """ Type commands add 'insert todo here', show, edit 'insert item #', complete, or exit: """
+    """ Type commands add 'insert todo here', show, edit 'insert item #', complete, or exit: """
     )
     user_action = user_action.lower().strip()
 
-    if "add" in user_action or 'new' in user_action:
+    if user_action.startswith('add') or user_action.startswith('new'):
         todo = user_action[4:] + '\n'
 
         # assumes that the file already exits
@@ -20,7 +21,7 @@ while True:
         with open('text_files/todos.txt', 'w') as file:
             file.writelines(todos)
 
-    elif "show" in user_action: #use a bitwise or OR operator
+    elif user_action.startswith('show'): #use a bitwise or OR operator
         with open('text_files/todos.txt', 'r') as file:
             todos = file.readlines()
 
@@ -29,34 +30,42 @@ while True:
             row = f"{index+1}: {item.title()}"
             print(row)
 
-    elif "edit" in user_action:
-        number = int(user_action[5:])
-        print(number)
+    elif user_action.startswith('edit'):
+        try:
+            number = int(user_action[5:])
+            print(number)
 
-        with open('text_files/todos.txt', 'r') as file:
-            todos = file.readlines()
+            with open('text_files/todos.txt', 'r') as file:
+                todos = file.readlines()
 
-        update = input("Enter change: ")
-        todos[number-1] = update + '\n'
+            update = input("Enter change: ")
+            todos[number-1] = update + '\n'
 
-        with open('text_files/todos.txt', 'w') as file:
-            file.writelines(todos)
+            with open('text_files/todos.txt', 'w') as file:
+                file.writelines(todos)
+        except ValueError as err:
+            print("Your command is not valid.")
+            continue
 
-    elif "complete" in user_action:
-        number = int(user_action[9:])
-        # number = int(input("Number of the completed todo item: "))
+    elif user_action.startswith('complete'):
+        try:
+            number = int(user_action[9:])
+            # number = int(input("Number of the completed todo item: "))
 
-        with open('text_files/todos.txt','r') as file:
-            todos = file.readlines()
+            with open('text_files/todos.txt','r') as file:
+                todos = file.readlines()
 
-        completed_todo = todos[number-1].strip('\n').title()
-        todos.pop(number-1)
+            completed_todo = todos[number-1].strip('\n').title()
+            todos.pop(number-1)
 
-        with open('text_files/todos.txt','w') as file:
-            file.writelines(todos)
+            with open('text_files/todos.txt','w') as file:
+                file.writelines(todos)
 
-        message = f'Todo {completed_todo} was completed'
-        print(message)
+            message = f'Todo {completed_todo} was completed'
+            print(message)
+        except IndexError:
+            print(f"There is no #{number} todo does not exist.")
+            continue
 
     elif "exit" in user_action:
         break
