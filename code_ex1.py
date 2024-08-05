@@ -55,15 +55,25 @@
 # print(result)
 
 ## Coding EX3
+# try:
+#     width = float(input("Enter rectangle width: "))
+#     length = float(input("Enter rectangle length: "))
 
-try:
-    width = float(input("Enter rectangle width: "))
-    length = float(input("Enter rectangle length: "))
+#     if width == length:
+#         exit("That looks like a square")
+#     area = width + length
+#     print(area)
+# except ValueError:
+#     print("Please enter a number in digit form.")
 
-    if width == length:
-        exit("That looks like a square")
-    area = width + length
-    print(area)
-except ValueError:
-    print("Please enter a number in digit form.")
 
+## Coding EX4
+def get_average():
+    total = 0
+    with open('text_files/data.txt', "r") as file:
+        data = file.readlines()
+    temps = data[1:]
+    temps = [float(temp) for temp in temps]
+    
+average = get_average()
+print(average)
