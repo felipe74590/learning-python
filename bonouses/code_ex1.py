@@ -68,12 +68,14 @@
 
 
 ## Coding EX4
-def get_average():
-    total = 0
-    with open('text_files/data.txt', "r") as file:
-        data = file.readlines()
-    temps = data[1:]
-    temps = [float(temp) for temp in temps]
+# def get_average():
+#     total = 0
+#     with open('text_files/data.txt', "r") as file:
+#         data = file.readlines()
+#     temps = data[1:]
+#     temps = [float(temp) for temp in temps]
     
-average = get_average()
-print(average)
+# average = get_average()
+# print(average)
+
+
